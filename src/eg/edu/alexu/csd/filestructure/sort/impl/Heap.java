@@ -1,54 +1,51 @@
 package eg.edu.alexu.csd.filestructure.sort.impl;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import javax.management.RuntimeErrorException;
 import eg.edu.alexu.csd.filestructure.sort.IHeap;
 import eg.edu.alexu.csd.filestructure.sort.INode;
 
 public class Heap<T extends Comparable<T>> implements IHeap<T> {
-	private int capacity = 101;
-	private int heapSize = 0;
-	private Node[] arr;
-
+	private ArrayList<INode<T>> arr;
+	private int heapsize = 0;
 	public Heap() {
-		arr = (Node[]) Array.newInstance(Node.class, capacity);
+		arr = new ArrayList<INode<T>>();
 	}
 
-	public Heap(Node[] arr, int heapsize, int capacity) {
+	public Heap(ArrayList<INode<T>> arr) {
 		this.arr = arr;
-		this.heapSize = heapsize;
-		this.capacity = capacity;
-
 	}
 
 	@Override
 	public INode<T> getRoot() {
-		if (heapSize == 0) {
+		if (arr.size() == 0) {
 			throw new RuntimeErrorException(new Error());
 		}
-		return arr[1];
+		return arr.get(0);
 	}
 
 	@Override
 	public int size() {
-		return heapSize;
+		return arr.size();
 	}
 
 	@Override
 	public T extract() {
-		if (heapSize < 1) {
+		if (arr.size() == 0) {
 			throw new RuntimeErrorException(new Error());
 		}
-		T max = arr[1].getValue();
-		arr[1].setValue(arr[heapSize].getValue());
-		heapSize--;
-		heapify(arr[1]);
-		arr[heapSize + 1] = null;
+		T max = (T) arr.get(0).getValue();
+		arr.get(0).setValue(arr.get(arr.size() - 1).getValue());
+		arr.remove(arr.size() - 1);
+		heapsize--;
+		if (arr.size() != 0)
+			heapify(arr.get(0));
 		return max;
 	}
-
+	
 	@Override
 	public void heapify(INode<T> node) {
 		if (node == null) {
@@ -58,12 +55,12 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 		Node right = (Heap<T>.Node) node.getRightChild();
 		int i = ((Node) node).getIndex();
 		Node largest;
-		if (right(i) <= heapSize && (right.getValue()).compareTo(node.getValue()) > 0) {
+		if (right(i) < heapsize && right != null && (right.getValue()).compareTo(node.getValue()) > 0) {
 			largest = right;
 		} else {
 			largest = (Heap<T>.Node) node;
 		}
-		if (left(i) <= heapSize && (left.getValue()).compareTo(largest.getValue()) > 0) {
+		if (left(i) < heapsize && left != null && (left.getValue()).compareTo(largest.getValue()) > 0) {
 			largest = left;
 		}
 		if (!largest.equals(node)) {
@@ -79,30 +76,22 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 		if (element == null) {
 			throw new RuntimeErrorException(new Error());
 		}
-		if (heapSize >= capacity - 1) {
-			capacity = capacity * 2;
-			Node[] newArr = (Node[]) Array.newInstance(Node.class, capacity);
-			for (int i = 1; i <= heapSize; i++) {
-				newArr[i] = arr[i];
-			}
-			arr = newArr;
-		}
-
-		heapSize++;
+		heapsize++;
 		Node node = new Node();
-		node.setIndex(heapSize);
+		node.setIndex(arr.size());
 		node.setValue(element);
-		arr[heapSize] = node;
-		increaseKey(heapSize);
+		arr.add(node);
+		increaseKey(arr.size() - 1);
+	
 	}
 
 	private void increaseKey(int index) {
 		int parent = 0;
-		while (index > 1 && (arr[index].getParent().getValue()).compareTo(arr[index].getValue()) < 0) {
-			parent = ((Node) arr[index].getParent()).getIndex();
-			T temp = arr[index].getValue();
-			arr[index].setValue(arr[index].getParent().getValue());
-			arr[index].getParent().setValue(temp);
+		while (index > 0 && (arr.get(index).getParent().getValue()).compareTo(arr.get(index).getValue()) < 0) {
+			parent = ((Node) arr.get(index).getParent()).getIndex();
+			T temp = (T) arr.get(index).getValue();
+			arr.get(index).setValue(arr.get(index).getParent().getValue());
+			arr.get(index).getParent().setValue(temp);
 			index = parent;
 		}
 	}
@@ -115,78 +104,77 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 		if (unordered.size() == 0) {
 			return;
 		}
-		heapSize = unordered.size();
-		if (heapSize > capacity + 1) {
-			capacity = heapSize + 1;
-		}
-		arr = (Node[]) Array.newInstance(Node.class, capacity);
+		heapsize = unordered.size();
+		arr = new ArrayList<INode<T>>();
 		Iterator<T> iter = unordered.iterator();
-		int i = 1;
 		while (iter.hasNext()) {
-			Node node = new Node();
-			node.setIndex(i);
+			INode<T> node = new Node();
+			((Heap<T>.Node) node).setIndex(arr.size());
 			node.setValue(iter.next());
-			arr[i] = node;
-			i++;
+			arr.add(node);
 		}
 
-		for (int j = heapSize / 2; j > 0; j--) {
-			heapify(arr[j]);
+		for (int j = arr.size() / 2; j >= 0; j--) {
+			heapify(arr.get(j));
 		}
 	}
 
 	private int right(int i) {
-		return 2 * i + 1;
+		return 2 * i + 2;
 	}
 
 	private int left(int i) {
-		return 2 * i;
+		return 2 * i + 1;
 	}
-
-	@Override
-	protected IHeap<T> clone() throws CloneNotSupportedException {
-		Node[] a = (Node[]) Array.newInstance(Node.class, capacity);
-		Heap<T> heap = new Heap<T>(a, heapSize, capacity);
-		
-		for (int i = 1; i <= heapSize; i++) {
-			Node n = new Node();
-			n.setIndex(arr[i].getIndex());
-			n.setValue(arr[i].getValue());
-			a[i] = n;
+	public IHeap<T> heapSort(ArrayList<T> unordered) {
+		build(unordered);
+		int num = unordered.size();
+		for (int i = num-1 ; i >= 0; i--) {
+			T temp = (T) arr.get(0).getValue();
+			arr.get(0).setValue(arr.get(i).getValue());
+			arr.get(i).setValue(temp);
+			heapsize--;
+			heapify(arr.get(0));
 		}
-		return heap;
+		return this;
 	}
-
 	/**
 	 * 
 	 * @author SHIKO
 	 *
 	 */
-	class Node implements INode<T> {
+	public class Node implements INode<T> {
 		private T key;
 		private int index;
+
+	
+		public Node() {
+
+		}
+
 		@Override
 		public INode<T> getLeftChild() {
-			if (2 * index > arr.length - 1) {
+			if (2 * index + 1 >= arr.size()) {
 				return null;
 			}
-			return arr[2 * index];
+			return arr.get(2 * index + 1);
 		}
 
 		@Override
 		public INode<T> getRightChild() {
-			if (2 * index + 1 > arr.length - 1) {
+			if (2 * index + 2 >= arr.size()) {
 				return null;
 			}
-			return arr[2 * index + 1];
+			return arr.get(2 * index + 2);
+
 		}
 
 		@Override
 		public INode<T> getParent() {
-			if (index / 2 < 1) {
+			if (index == 0) {
 				return null;
 			}
-			return arr[index / 2];
+			return arr.get((index-1) / 2);
 		}
 
 		@Override
@@ -206,6 +194,7 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 		public int getIndex() {
 			return index;
 		}
+
 	}
 
 }
