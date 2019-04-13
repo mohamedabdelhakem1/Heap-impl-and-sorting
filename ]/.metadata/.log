@@ -1,0 +1,110 @@
+!SESSION 2019-04-12 22:14:10.367 -----------------------------------------------
+eclipse.buildId=4.7.2.M20171130-0510
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product C:\Users\SHIKO\git\heap and sorting\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product C:\Users\SHIKO\git\heap and sorting\.project
+
+!ENTRY org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.SelectAndValidateModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:05.728
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.ui.emf', id='org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand', categoryId='org.eclipse.papyrus.editor.category'
+
+!ENTRY org.eclipse.core.runtime 4 0 2019-04-12 22:15:15.372
+!MESSAGE Invalid input url:platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/ArchitectureViewpoint.gif
+!STACK 0
+java.io.IOException: Unable to resolve plug-in "platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/ArchitectureViewpoint.gif".
+	at org.eclipse.core.internal.runtime.PlatformURLPluginConnection.parse(PlatformURLPluginConnection.java:61)
+	at org.eclipse.core.internal.runtime.FindSupport.find(FindSupport.java:290)
+	at org.eclipse.core.runtime.FileLocator.find(FileLocator.java:152)
+	at org.eclipse.ui.internal.menus.MenuHelper.getIconURI(MenuHelper.java:378)
+	at org.eclipse.ui.internal.registry.ViewRegistry.createDescriptor(ViewRegistry.java:180)
+	at org.eclipse.ui.internal.registry.ViewRegistry.postConstruct(ViewRegistry.java:116)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.inject(InjectorImpl.java:124)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:399)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:318)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:162)
+	at org.eclipse.ui.internal.WorkbenchPlugin$2.compute(WorkbenchPlugin.java:1299)
+	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:62)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:262)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:228)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:599)
+	at org.eclipse.ui.internal.WorkbenchPlugin.getViewRegistry(WorkbenchPlugin.java:616)
+	at org.eclipse.ui.internal.Workbench.initializeE4Services(Workbench.java:1999)
+	at org.eclipse.ui.internal.Workbench.init(Workbench.java:1632)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2848)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:667)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+
+!ENTRY org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.SelectAndValidateModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.389
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.services.validation', id='org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand', categoryId='org.eclipse.papyrus.editor.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-04-12 22:15:17.390
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.ui.emf', id='org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand', categoryId='org.eclipse.papyrus.editor.category'
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-04-12 22:16:21.921
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\SHIKO'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.launchbar.core 2 0 2019-04-12 22:16:42.447
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2019-04-12 22:16:42.576
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2019-04-12 22:16:42.588
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.android.ide.eclipse.ddms 4 0 2019-04-12 22:16:49.712
+!MESSAGE DDMS files not found: C:\Android\tools\traceview.bat 
+
+!ENTRY com.android.ide.eclipse.ddms 4 0 2019-04-12 22:16:49.874
+!MESSAGE DDMS files not found: C:\Android\tools\traceview.bat 

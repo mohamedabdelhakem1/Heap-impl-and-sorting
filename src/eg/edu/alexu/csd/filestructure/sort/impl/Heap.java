@@ -146,12 +146,6 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 	public class Node implements INode<T> {
 		private T key;
 		private int index;
-
-	
-		public Node() {
-
-		}
-
 		@Override
 		public INode<T> getLeftChild() {
 			if (2 * index + 1 >= arr.size()) {
@@ -166,7 +160,6 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 				return null;
 			}
 			return arr.get(2 * index + 2);
-
 		}
 
 		@Override
@@ -194,7 +187,5 @@ public class Heap<T extends Comparable<T>> implements IHeap<T> {
 		public int getIndex() {
 			return index;
 		}
-
 	}
-
 }

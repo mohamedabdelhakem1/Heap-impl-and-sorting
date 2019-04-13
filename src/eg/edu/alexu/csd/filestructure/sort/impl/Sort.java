@@ -10,9 +10,7 @@ public class Sort<T extends Comparable<T>> implements ISort<T> {
 
 	@Override
 	public IHeap<T> heapSort(ArrayList<T> unordered) {
-		
 		return (new Heap<T>()).heapSort(unordered);
-
 	}
 
 	@Override
